@@ -16,6 +16,13 @@ First, install Ansible
 
 `$ ./install_ansible.sh` 
 
+Second, create a read-only PAT in GitHub. Then, put the PAT in an env var 
+
+`$ export OAUTH_TOKEN=1234`
+
+This step exists because the user has 2FA on (just like everyone should)
+
 ## Running
 
-`$ sudo ansible-pull -U https://github.com/steffkelsey/linux-laptop.git`
+`$ sudo ansible-pull -U https://$OAUTH_TOKEN:x-oauth-basic@github.com/steffkelsey/linux-laptop.git`
+
