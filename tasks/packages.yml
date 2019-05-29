@@ -1,7 +1,6 @@
 - name: Install packages
-  apt: "{{ packages }}"
-  vars:
-    packages:
+  apt:
+    name:
       - git
       - zsh
       - python3-dev
@@ -17,7 +16,7 @@
 
 - name: Add Docker repository
   apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian stretch stable
 
 - name: Index new repo into the cache
   become: yes
