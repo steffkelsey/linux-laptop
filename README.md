@@ -26,3 +26,7 @@ This step exists because the user has 2FA on (just like everyone should)
 
 `$ sudo ansible-pull -U https://$OAUTH_TOKEN:x-oauth-basic@github.com/steffkelsey/linux-laptop.git`
 
+## References
+Found some great stuff here on getting docker to work with WSL: 
+https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly
+
