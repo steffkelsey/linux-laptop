@@ -19,11 +19,33 @@
   apt_repository:
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
 
+- name: Index new repo into the cache
+  become: yes
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+    force_apt_get: yes
+
 - name: Install docker ce packages
-  apt: "{{ docker_packages }}"
+  apt:
+    name: "{{ docker_packages }}"
+    force_apt_get: yes
   vars:
     docker_packages:
       - docker-ce
       - docker-ce-cli
       - containerd.io
+
+- name: Install python packages
+  pip:
+    executable: pip3
+    name:
+      - thefuck
+
+- name: Install docker-compose
+  pip:
+    executable: pip3
+    name: docker-compose
+    extra_args: --user
 
