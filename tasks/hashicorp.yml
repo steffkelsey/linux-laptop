@@ -1,0 +1,16 @@
+- name: Create install directory
+  file:
+    path: /usr/local/hashicorp
+    state: directory
+    mode: '0755'
+
+- name: Install Packer
+  unarchive:
+    src: "https://releases.hashicorp.com/packer/{{ version }}/packer_{{ version }}_{{ os }}_{{ arch }}.zip"
+    dest: /usr/local/hashicorp
+    remote_src: yes
+  vars:
+    version: 1.4.1
+    os: linux
+    arch: amd64
+

@@ -8,5 +8,7 @@
   tasks:
     - include: tasks/users.yml
     - include: tasks/packages.yml
+    - include: tasks/install_go.yml
+    - include: tasks/hashicorp.yml
     - include: tasks/cron.yml
 
