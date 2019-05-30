@@ -1,12 +1,20 @@
 - name: Install packages
   apt:
-    name:
+    name: "{{ packages }}"
+  vars:
+    packages:
       - git
       - zsh
       - python3-dev
       - python3-pip
       - python3-setuptools
       - tmux
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+      - vim
 
 - name: Add Docker official gpg key
   apt_key:
@@ -19,17 +27,12 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/debian stretch stable
 
 - name: Index new repo into the cache
-  become: yes
-  apt:
-    name: "*"
-    state: latest
-    update_cache: yes
-    force_apt_get: yes
+  apt: update_cache=yes
+  changed_when: False
 
 - name: Install docker ce packages
   apt:
     name: "{{ docker_packages }}"
-    force_apt_get: yes
   vars:
     docker_packages:
       - docker-ce
@@ -46,5 +49,4 @@
   pip:
     executable: pip3
     name: docker-compose
-    extra_args: --user
-
+  become: yes
