@@ -11,7 +11,7 @@ if [ "$id" == "Ubuntu" ]; then
   sudo apt-add-repository --yes --update ppa:ansible/ansible
 elif [ "$id" == "Debian" ]; then
   # debian setup
-  # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
 else
   echo "Not setup for distro: $id"
   echo "EXITING WITHOUT INSTALLING ANSIBLE"
