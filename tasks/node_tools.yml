@@ -1,8 +1,15 @@
+- name: Prep for NVM
+  file:
+    path: $HOME/.nmv
+    state: directory
+  become: yes
+
 - name: Install NVM
-  shell: >
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-  args:
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+  git:
+    repo: "https://steffkelsey:{{ lookup('env', 'OAUTH_TOKEN') }}@github.com/nvm-sh/nvm.git"
+    dest: $HOME/.nvm/
+    version: v0.34.0
+  become: yes
 
 - name: Install Latest Node
   shell: |
