@@ -14,3 +14,32 @@
     os: linux
     arch: amd64
 
+- name: Install Terraform
+  unarchive:
+    src: "https://releases.hashicorp.com/terraform/{{ version }}/terraform_{{ version }}_{{ os }}_{{ arch }}.zip"
+    dest: /usr/local/hashicorp
+    remote_src: yes
+  vars:
+    version: 0.12.2
+    os: linux
+    arch: amd64
+
+- name: Install Consul
+  unarchive:
+    src: "https://releases.hashicorp.com/consul/{{ version }}/consul_{{ version }}_{{ os }}_{{ arch }}.zip"
+    dest: /usr/local/hashicorp
+    remote_src: yes
+  vars:
+    version: 1.5.1
+    os: linux
+    arch: amd64
+
+- name: Install Nomad
+  unarchive:
+    src: "https://releases.hashicorp.com/nomad/{{ version }}/nomad_{{ version }}_{{ os }}_{{ arch }}.zip"
+    dest: /usr/local/hashicorp
+    remote_src: yes
+  vars:
+    version: 0.9.3
+    os: linux
+    arch: amd64
