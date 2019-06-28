@@ -46,6 +46,7 @@
     executable: pip3
     name:
       - thefuck
+      - awscli
 
 - name: Install docker-compose
   pip:
