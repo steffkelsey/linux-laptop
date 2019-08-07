@@ -17,6 +17,7 @@
       - software-properties-common
       - vim
       - unzip
+      - zip
       - graphviz
 
 - name: Add Docker official gpg key
