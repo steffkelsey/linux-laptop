@@ -1,6 +1,6 @@
 - name: Prep for NVM
   file:
-    path: $HOME/.nmv
+    path: $HOME/.nvm
     state: directory
   become: yes
 
