@@ -8,13 +8,13 @@
   git:
     repo: "https://steffkelsey:{{ lookup('env', 'OAUTH_TOKEN') }}@github.com/nvm-sh/nvm.git"
     dest: $HOME/.nvm/
-    version: v0.34.0
+    version: v0.35.1
   become: yes
 
 - name: Install Latest Node
   shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    nvm install v10.16.0
+    nvm install v12.13.1
     exit 0
 

@@ -10,7 +10,7 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 1.4.2
+    version: 1.4.5
     os: "{{ ansible_facts['system']|lower }}"
 
 - name: Install Terraform
@@ -19,7 +19,7 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 0.12.6
+    version: 0.12.17
     os: "{{ ansible_facts['system']|lower }}"
 
 - name: Install Consul
@@ -28,7 +28,7 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 1.5.3
+    version: 1.6.2
     os: "{{ ansible_facts['system']|lower }}"
 
 - name: Install Nomad
@@ -37,7 +37,7 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 0.9.4
+    version: 0.10.2
     os: "{{ ansible_facts['system']|lower }}"
 
 - name: Install Vault
@@ -46,5 +46,5 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 1.2.0
+    version: 1.3.0
     os: "{{ ansible_facts['system']|lower }}"
