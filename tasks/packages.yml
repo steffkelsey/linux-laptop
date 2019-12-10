@@ -61,7 +61,7 @@
     name:
       - thefuck
       - awscli
-      - certbot_dns_route53==0.22.2
+      - certbot_dns_route53
 
 - name: Install docker-compose
   pip:
