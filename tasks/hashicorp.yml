@@ -48,11 +48,9 @@
   vars:
     version: 1.3.0
     os: "{{ ansible_facts['system']|lower }}"
+
 - name: Install Vagrant
-  unarchive:
-    src: "https://releases.hashicorp.com/vagrant/{{ version }}/vagrant_{{ version }}_{{ os }}_amd64.zip"
-    dest: /usr/local/hashicorp
-    remote_src: yes
+  apt:
+    deb: "https://releases.hashicorp.com/vagrant/{{ version }}/vagrant_{{ version }}_x86_64.deb"
   vars:
     version: 2.2.7
-    os: "{{ ansible_facts['system']|lower }}"
