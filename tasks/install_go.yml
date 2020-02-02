@@ -4,7 +4,7 @@
     dest: /c
     remote_src: yes
   vars:
-    version: 1.13.5
+    version: 1.13.7
     os: linux
     arch: amd64
 
