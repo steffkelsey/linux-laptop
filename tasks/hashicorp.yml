@@ -10,7 +10,7 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 1.4.5
+    version: 1.5.1
     os: "{{ ansible_facts['system']|lower }}"
 
 - name: Install Terraform
