@@ -47,21 +47,12 @@
       - docker-ce-cli
       - containerd.io
 
-- name: Install certbot
-  apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
-      - certbot
-      - python-certbot-nginx
-
 - name: Install python packages
   pip:
     executable: pip3
     name:
       - thefuck
       - awscli
-      - certbot_dns_route53
 
 - name: Install docker-compose
   pip:
