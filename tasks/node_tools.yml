@@ -15,7 +15,6 @@
   shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    nvm install v12.13.1
     nvm install v13.3
     nvm use 13.3
     exit 0

@@ -22,33 +22,6 @@
     version: 0.12.18
     os: "{{ ansible_facts['system']|lower }}"
 
-- name: Install Consul
-  unarchive:
-    src: "https://releases.hashicorp.com/consul/{{ version }}/consul_{{ version }}_{{ os }}_amd64.zip"
-    dest: /usr/local/hashicorp
-    remote_src: yes
-  vars:
-    version: 1.6.2
-    os: "{{ ansible_facts['system']|lower }}"
-
-- name: Install Nomad
-  unarchive:
-    src: "https://releases.hashicorp.com/nomad/{{ version }}/nomad_{{ version }}_{{ os }}_amd64.zip"
-    dest: /usr/local/hashicorp
-    remote_src: yes
-  vars:
-    version: 0.10.2
-    os: "{{ ansible_facts['system']|lower }}"
-
-- name: Install Vault
-  unarchive:
-    src: "https://releases.hashicorp.com/vault/{{ version }}/vault_{{ version }}_{{ os }}_amd64.zip"
-    dest: /usr/local/hashicorp
-    remote_src: yes
-  vars:
-    version: 1.3.0
-    os: "{{ ansible_facts['system']|lower }}"
-
 - name: Install Vagrant
   apt:
     deb: "https://releases.hashicorp.com/vagrant/{{ version }}/vagrant_{{ version }}_x86_64.deb"
