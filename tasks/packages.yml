@@ -56,3 +56,9 @@
     name: docker-compose
   become: yes
 
+- name: Install sandboxd
+  unarchive:
+    src: " https://github.com/benvan/sandboxd/archive/master.zip"
+    dest: /usr/local
+    remote_src: yes
+
