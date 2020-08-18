@@ -19,7 +19,7 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 0.13.0
+    version: 0.12.29
     os: "{{ ansible_facts['system']|lower }}"
 
 - name: Install Vagrant
