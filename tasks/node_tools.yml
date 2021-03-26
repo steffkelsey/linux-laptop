@@ -15,7 +15,7 @@
   shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    nvm install v14.8
-    nvm use 14.8
+    nvm install v14.16
+    nvm use 14.16
     exit 0
 
