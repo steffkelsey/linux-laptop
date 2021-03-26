@@ -10,7 +10,7 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 1.6.1
+    version: 1.7.0
     os: "{{ ansible_facts['system']|lower }}"
 
 - name: Install Terraform
@@ -19,11 +19,11 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 0.12.29
+    version: 0.14.9
     os: "{{ ansible_facts['system']|lower }}"
 
 - name: Install Vagrant
   apt:
     deb: "https://releases.hashicorp.com/vagrant/{{ version }}/vagrant_{{ version }}_x86_64.deb"
   vars:
-    version: 2.2.9
+    version: 2.2.14
