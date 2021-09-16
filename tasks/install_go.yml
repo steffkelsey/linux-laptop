@@ -1,7 +1,7 @@
 - name: Install Go
   unarchive:
     src: "https://dl.google.com/go/go{{ version }}.{{ os }}-{{ arch }}.tar.gz"
-    dest: /c
+    dest: /mnt/c
     remote_src: yes
   vars:
     version: 1.17.1
