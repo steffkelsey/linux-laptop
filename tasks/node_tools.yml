@@ -1,19 +1,20 @@
 - name: Prep for NVM
   file:
-    path: $HOME/.nvm
+    path: /usr/local/nvm
     state: directory
-  become: yes
+    mode: '0755'
 
 - name: Install NVM
   git:
     repo: "https://steffkelsey:{{ lookup('env', 'OAUTH_TOKEN') }}@github.com/nvm-sh/nvm.git"
-    dest: $HOME/.nvm/
+    dest: /usr/local/nvm/
     version: v0.38.0
   become: yes
 
+
 - name: Install Latest Node
   shell: |
-    export NVM_DIR="$HOME/.nvm"
+    export NVM_DIR=/usr/local/nvm
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     nvm install v14.17.6
     nvm use 14.17.6
