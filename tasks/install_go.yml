@@ -3,7 +3,7 @@
   become_method: su
   become_user: steffkelsey
   file:
-    path: /home/steffkelsey/go
+    path: /mnt/c/go
     state: directory
     mode: '0755'
 
@@ -13,7 +13,7 @@
   become_user: steffkelsey
   unarchive:
     src: "https://dl.google.com/go/go{{ version }}.{{ os }}-{{ arch }}.tar.gz"
-    dest: $HOME
+    dest: /mnt/c/
     remote_src: yes
   vars:
     version: 1.17.1
