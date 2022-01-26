@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+
+    - name: "Setup Scenario"
+      include_tasks: "../common/tasks/setup.yml"

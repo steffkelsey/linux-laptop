@@ -1,0 +1,5 @@
+---
+awscliv2_version: 2.4.16
+awscliv2_clean: false
+# has to be true because apt update has never been run before
+awscliv2_apt_cache_update: true

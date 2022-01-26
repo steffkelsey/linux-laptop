@@ -1,4 +1,5 @@
-- name: Install packages
+---
+- name: linux-laptop | Install packages
   apt:
     name: "{{ packages }}"
   vars:
@@ -19,53 +20,8 @@
       - zip
       - graphviz
 
-- name: Add Docker official gpg key
-  apt_key:
-    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-
-- name: Add Docker repository
-  apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/{{ ansible_facts['distribution']|lower }} {{ ansible_facts['distribution_release']|lower }} stable
-
-- name: Index new repos into the cache
-  apt: update_cache=yes
-  changed_when: False
-
-- name: Install docker ce packages
-  apt:
-    name: "{{ docker_packages }}"
-  vars:
-    docker_packages:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-
-- name: Install python packages
+- name: linux-laptop | Install python packages
   pip:
     executable: pip3
     name:
       - thefuck
-
-- name: Install docker-compose
-  pip:
-    executable: pip3
-    name: docker-compose
-  become: yes
-
-- name: Install awscli v2
-  shell: |
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    unzip awscliv2.zip
-    rm awscliv2.zip
-    sudo ./aws/install
-    sudo rm -rf ./aws
-    exit 0
-
-- name: Install sandboxd
-  unarchive:
-    src: " https://github.com/benvan/sandboxd/archive/master.zip"
-    dest: /usr/local
-    remote_src: yes
-

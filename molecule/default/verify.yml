@@ -1,0 +1,53 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: Capture which tmux response
+      command: "which tmux"
+      register: which_tmux_output
+      changed_when: false
+
+    - name: Check that tmux is installed
+      assert:
+        that: "'tmux' in which_tmux_output.stdout"
+
+    - name: Capture jq --help response
+      command: "jq --help"
+      register: jq_help_output
+      changed_when: false
+
+    - name: Check that jq is installed
+      assert:
+        that: "'JSON' in jq_help_output.stdout"
+
+    - name: Capture zsh --help response
+      command: "zsh --help"
+      register: zsh_help_output
+      changed_when: false
+
+    - name: Check that zsh is installed
+      assert:
+        that: "'Usage: zsh' in zsh_help_output.stdout"
+
+    - name: Capture asdf --help response when interactive zsh shell
+      command: zsh -i -c "asdf --help"
+      register: asdf_help_output
+      changed_when: false
+
+    - name: Check that asdf works from zsh
+      assert:
+        that: "'asdf plugin' in asdf_help_output.stdout"
+
+    # Also wanted to check that one of the plugins we installed is working in
+    # in zsh. Not to test asdf, but that the zshrc stuff got picked up for
+    # plugins/shims as well and not just the asdf executable.
+    - name: Capture terraform version response when interactive zsh shell
+      command: zsh -i -c "terraform version"
+      register: tf_version_output
+      changed_when: false
+
+    - name: Check that terraform works from zsh
+      assert:
+        that: "'Terraform' in tf_version_output.stdout"
