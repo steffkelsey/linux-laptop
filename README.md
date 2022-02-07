@@ -1,8 +1,8 @@
 # Linux Development Environment
 
-[![CI](https://github.com/steffkelsey/linux-laptop/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/steffkelsey/linux-laptop/actions/workflows/ci.yml)
-[![AWSCLIV2CI](https://github.com/steffkelsey/linux-laptop/actions/workflows/awscliv2-ci.yml/badge.svg?branch=master)](https://github.com/steffkelsey/linux-laptop/actions/workflows/awscliv2-ci.yml)
-[![GODEV2CI](https://github.com/steffkelsey/linux-laptop/actions/workflows/go-dev-ci.yml/badge.svg?branch=master)](https://github.com/steffkelsey/linux-laptop/actions/workflows/go-dev-ci.yml)
+[![CI](https://github.com/steffkelsey/linux-laptop/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/steffkelsey/linux-laptop/actions/workflows/ci.yml)
+[![AWSCLIV2CI](https://github.com/steffkelsey/linux-laptop/actions/workflows/awscliv2-ci.yml/badge.svg?branch=main)](https://github.com/steffkelsey/linux-laptop/actions/workflows/awscliv2-ci.yml)
+[![GODEV2CI](https://github.com/steffkelsey/linux-laptop/actions/workflows/go-dev-ci.yml/badge.svg?branch=main)](https://github.com/steffkelsey/linux-laptop/actions/workflows/go-dev-ci.yml)
 
 An Ansible playbook to install the things I use the most when doing
 software development (constantly changes).
