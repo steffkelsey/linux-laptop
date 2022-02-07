@@ -1,7 +1,7 @@
 Ansible Role: go_dev
 =========
 
-[![GODEV2CI](https://github.com/steffkelsey/linux-laptop/actions/workflows/go-dev-ci.yml/badge.svg?branch=master)](https://github.com/steffkelsey/linux-laptop/actions/workflows/go-dev-ci.yml)
+[![GODEV2CI](https://github.com/steffkelsey/linux-laptop/actions/workflows/go-dev-ci.yml/badge.svg?branch=main)](https://github.com/steffkelsey/linux-laptop/actions/workflows/go-dev-ci.yml)
 
 Installs Golang on Debian.
 
