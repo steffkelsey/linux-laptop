@@ -1,0 +1,39 @@
+---
+
+# could do a checksum here also if have a clean way to get go_checksum here
+# correct for all OS and arch combos.
+- name: "go_dev | Download Go"
+  get_url:
+    url: "{{ go_distribution_url }}{{ go_filename }}.tar.gz"
+    dest: "{{ go_temporary_dir }}/{{ go_filename }}.tar.gz"
+    validate_certs: false
+
+- name: "go_dev | Empty destination directory"
+  file:
+    path: "{{ go_root }}"
+    state: absent
+
+- name: "go_dev | Ensure directory is writable"
+  file:
+    path: "{{ go_root }}"
+    state: directory
+    mode: 0755
+    recurse: true
+
+- name: "go_dev | Unpack distribution"
+  unarchive:
+    src: "{{ go_temporary_dir }}/{{ go_filename }}.tar.gz"
+    dest: "{{ go_root }}"
+    remote_src: true
+    # strip-components=1 removes the "/go" folder that is wrapping up everything
+    # inside the archive. If we don't strip it, we end up with the files in
+    # {{ go_root }}/go when we want them to be in {{ go_root }}. For example,
+    # the default value for go_root is /usr/local/go. We want the bin folder to
+    # be in /usr/local/go/bin. If we unarchive without "--strip-components=1",
+    # we get a bin folder in /usr/local/go/go/bin. Disaster!
+    extra_opts: ["--strip-components=1"]
+
+- name: "go_dev | Remove archive"
+  file:
+    path: "{{ go_temporary_dir }}/{{ go_filename }}.tar.gz"
+    state: absent

@@ -1,0 +1,33 @@
+---
+# installs aws cli v2
+# https://docs.aws.amazon.com/cli/latest/userguide/getting-started-version.html
+- name: "awscli | Update the apt cache repositories"
+  # setting cache_valid_time to 1 day (86,400 seconds) so we only do the
+  # expensive apt-update once during heavy testing sessions
+  apt: cache_valid_time=86400
+  when: awscliv2_apt_cache_update
+
+- name: "awscliv2 | Install unzip if we don't have it"
+  apt:
+    name: unzip
+
+- name: "awscliv2 | Download and unarchive"
+  unarchive:
+    src: "{{ awscliv2_distribution_url }}{{ awscliv2_filename }}.zip"
+    dest: "/tmp"
+    remote_src: true
+
+- name: "awscliv2 | Check for the /tmp/aws folder"
+  stat:
+    path: "/tmp/aws"
+  register: aws_installer_dir
+  failed_when: not aws_installer_dir.stat.exists
+
+- name: "awscliv2 | Run aws cli install exe"
+  command: "/tmp/aws/install --update"
+  when: aws_installer_dir.stat.exists
+
+- name: "awscliv2 | Remove /tmp/aws folder"
+  file:
+    path: "/tmp/aws"
+    state: absent

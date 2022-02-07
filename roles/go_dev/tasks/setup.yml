@@ -1,0 +1,72 @@
+---
+# Sets facts for all things go_dev. Mostly for golang install - folders and
+# checking for existing installation.
+
+- name: "go_dev | Define go_root"
+  set_fact:
+    go_root: /usr/local/go
+  when: go_root is not defined
+
+- name: "go_dev | Define go_arch amd64"
+  set_fact:
+    go_arch: "amd64"
+  when: go_arch is not defined and ansible_architecture == "x86_64"
+
+# We wouldn't need this except for apple M1 (which would be arm64 when
+# everything else is amd64) If someone is running in Intel mode emulation, we
+# just won't be able to tell. It's possible we could get more using
+# ansible_processor, but I don't have a mac to test on atm.
+- name: "go_dev | Define go_arch arm64"
+  set_fact:
+    go_arch: "arm64"
+  when: go_arch is not defined and ansible_architecture == "arm64"
+
+- name: "go_dev | Define version comparison string"
+  set_fact:
+    go_version_string: "go{{ go_version }}"
+  changed_when: false
+
+- name: "go_dev | Define go_os linux"
+  set_fact:
+    go_os: "linux"
+  when:
+    - go_os is not defined
+    - ansible_distribution != "Darwin"
+    - ansible_distribution != "FreeBSD"
+
+# Once again for macOS machines - assuming that the ansible_distribution fact
+# is correct for us.
+- name: "go_dev | Define go_os darwin"
+  set_fact:
+    go_os: "darwin"
+  when: go_os is not defined and ansible_distribution == "Darwin"
+
+# prob don't need to cover the FreeBSD case, but why not? Looking at the Go
+# downloads page and didn't want to leave it.
+- name: "go_dev | Define go_os freebsd"
+  set_fact:
+    go_os: "freebsd"
+  when: go_os is not defined and ansible_distribution == "FreeBSD"
+
+- name: "go_dev | Define URL for download from go developer site"
+  set_fact:
+    go_filename: "go{{ go_version }}.{{ go_os }}-{{ go_arch }}"
+    go_distribution_url: "https://go.dev/dl/"
+
+- name: "go_dev | Looking for existing installation"
+  stat:
+    path: "{{ go_root }}/bin/go"
+  register: go_binary
+  failed_when: false
+
+- name: "go_dev | Getting version information"
+  command: "{{ go_root }}/bin/go version"
+  register: current_go_version
+  changed_when: false
+  failed_when: false
+
+- name: "go_dev | Define expected version output"
+  set_fact:
+    expected_go_version_output: >
+      "go version {{ go_version_string }} {{ go_os }}/{{ go_arch }}"
+  when: expected_go_version_output is not defined

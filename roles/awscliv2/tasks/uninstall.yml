@@ -1,0 +1,12 @@
+---
+# uninstalls any existing instances of aws cli v2
+# https://docs.aws.amazon.com/cli/latest/userguide/uninstall.html
+
+- name: "awscliv2 | Remove aws cli symlinks and files"
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /usr/local/bin/aws
+    - /usr/local/bin/aws_completer
+    - /usr/local/aws-cli

@@ -1,0 +1,46 @@
+---
+# Sets facts for all things aws cli v2. Mostly for install - folders and
+# checking for existing installation.
+
+# an example `aws --version` output is
+# `aws-cli/2.4.10 Python/3.8.8 Linux/5.13.0-27-generic exe/x86_64.ubuntu.20
+# prompt/off`
+# The regex search string below captures the aws cli version in group 1
+- name: "awscliv2 | Define version regex search string"
+  set_fact:
+    awscliv2_version_regex_search_string: 'aws-cli\/([\d.]+)'
+
+- name: "awscliv2 | Define URL for download from aws developer site"
+  set_fact:
+    awscliv2_filename: "awscli-exe-linux-x86_64-{{ awscliv2_version }}"
+    awscliv2_distribution_url: "https://awscli.amazonaws.com/"
+
+# We can find existing installations by looking for a symlink at the default
+# location in /usr/local/bin
+- name: "awscliv2 | Looking for existing installation"
+  stat:
+    path: "/usr/local/bin/aws"
+  register: aws_link
+  failed_when: false
+  # TODO what does the failed_when: false above actually do?
+
+- name: "awscliv2 | Getting current version output"
+  command: "aws --version"
+  register: current_aws_cli_version
+  changed_when: false
+  failed_when: false
+
+- name: >
+    "awscliv2 | Extract list of current version matches from the stdout of the
+    version command"
+  set_fact:
+    # yamllint disable-line rule:line-length
+    awscliv2_current_version_list: "{{ current_aws_cli_version.stdout | regex_search(awscliv2_version_regex_search_string, '\\1') }}"
+
+
+- name: "awscliv2 | Extract current version from the list of matches"
+  set_fact:
+    awscliv2_current_version: "{{ awscliv2_current_version_list | first }}"
+  when:
+    - awscliv2_current_version_list is defined
+    - awscliv2_current_version_list | type_debug == "list"

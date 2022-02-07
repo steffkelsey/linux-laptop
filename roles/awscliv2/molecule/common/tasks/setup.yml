@@ -1,0 +1,7 @@
+---
+- name: Load scenario variables
+  include_vars: vars/main.yml
+
+- name: "Include awscliv2"
+  include_role:
+    name: "awscliv2"
