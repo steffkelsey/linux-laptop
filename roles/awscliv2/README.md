@@ -1,7 +1,7 @@
 Ansible Role: awscliv2
 =========
 
-[![AWSCLIV2CI](https://github.com/steffkelsey/linux-laptop/actions/workflows/awscliv2-ci.yml/badge.svg?branch=master)](https://github.com/steffkelsey/linux-laptop/actions/workflows/awscliv2-ci.yml)
+[![AWSCLIV2CI](https://github.com/steffkelsey/linux-laptop/actions/workflows/awscliv2-ci.yml/badge.svg?branch=main)](https://github.com/steffkelsey/linux-laptop/actions/workflows/awscliv2-ci.yml)
 
 Installs AWS CLI v2 on Debian.
 
