@@ -6,7 +6,6 @@
 
 - name: "go_dev | Run task that installs go"
   include_tasks: install.yml
-  # yamllint disable-line rule:line-length
   when: >
     not go_binary.stat.exists or
     current_go_version is not defined or

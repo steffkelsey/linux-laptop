@@ -28,7 +28,7 @@ Second, install the dependencies for the main playbook and the roles.
 
 To provision all the roles in this repo for the entire linux-laptop, navigate
 to the root directory of this repo and run:  
-`$ ansible-playbook main.yml --extra-vars=asdf_user=$(whoami) --ask-become-pass`
+`$ ansible-playbook main.yml --ask-become-pass --extra-vars "asdf_user=$(whoami)"`
 
 The `asdf_user` variable is required for asdf to work since it operates out of
 the home directory.
