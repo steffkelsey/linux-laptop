@@ -22,4 +22,4 @@
 
   - name: Assert that the installed version matches the target
     assert:
-      that: newer_awscliv2_version == aws_version_to_verify
+      that: awscliv2_version == aws_version_to_verify
