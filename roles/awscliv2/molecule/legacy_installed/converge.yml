@@ -3,13 +3,5 @@
   hosts: all
   tasks:
 
-    # The setup scenario installs an older version
     - name: "Setup Scenario"
       include_tasks: "../common/tasks/setup.yml"
-
-    - name: "Run the role again with newer version"
-      include_role:
-        name: "awscliv2"
-      vars:
-        awscliv2_version: "{{ newer_awscliv2_version }}"
-        awscliv2_apt_cache_update: false
