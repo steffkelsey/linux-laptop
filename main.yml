@@ -31,14 +31,14 @@
           f2ab54bf1d17e10f17e405c2fac29f0620a66b5c7a5200b5699e50e28ed210c8
         asdf_plugins:
           - name: nodejs
-            versions: ["14.17.6", "16.13.2"]
-            global: "16.13.2"
+            versions: ["16.17.0", "16.13.2"]
+            global: "16.17.0"
           - name: terraform
-            versions: ["1.1.5", "0.14.11", "0.11.15"]
-            global: "1.1.5"
+            versions: ["1.2.8"]
+            global: "1.2.8"
           - name: packer
-            versions: ["1.7.9"]
-            global: "1.7.9"
+            versions: ["1.8.3"]
+            global: "1.8.3"
 
     - name: linux-laptop | Check if /etc/zsh/zshrc exists
       stat:
