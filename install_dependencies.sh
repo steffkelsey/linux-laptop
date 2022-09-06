@@ -12,8 +12,7 @@ if [ "$id" == "Ubuntu" ]; then
   # ubuntu setup
   sudo apt-get update
   sudo apt-get install python3.8 python3-pip libssl-dev
-  # TODO - switch to using virtualenv rather than a global install
-  python3 -m pip install ansible molecule[docker,lint] yamllint ansible-lint
+  python3 -m pip install -r requirements.txt
 else
   echo "Not setup for distro: $id"
   echo "EXITING WITHOUT INSTALLING ANSIBLE"
