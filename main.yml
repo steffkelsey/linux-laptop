@@ -7,6 +7,7 @@
     install_go_dev: true
     install_awscliv2: true
     install_docker: true
+    install_nodejs: true
     install_asdf: true
 
   pre_tasks:
@@ -30,9 +31,6 @@
         asdf_sha256: >
           f2ab54bf1d17e10f17e405c2fac29f0620a66b5c7a5200b5699e50e28ed210c8
         asdf_plugins:
-          - name: nodejs
-            versions: ["16.17.0", "16.13.2"]
-            global: "16.17.0"
           - name: terraform
             versions: ["1.2.8"]
             global: "1.2.8"
@@ -66,6 +64,13 @@
       include_role:
         name: awscliv2
       when: install_awscliv2
+
+    - name: linux-laptop | Maybe install nodejs
+      include_role:
+        name: geerlingguy.nodejs
+      when: install_nodejs
+      vars:
+        nodejs_version: "16.x"
 
     - name: linux-laptop | Maybe install docker
       include_role:
