@@ -81,6 +81,8 @@
       when: install_ruby
       vars:
         ruby_version: 2.7.7
+        ruby_download_url: https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.7.tar.gz
+        ruby_install_from_source: true
         ruby_install_bundler: true
 
     - name: linux-laptop | Maybe install docker
