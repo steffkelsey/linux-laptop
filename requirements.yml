@@ -4,7 +4,5 @@ roles:
     version: 6.0.4
   - name: geerlingguy.nodejs
     version: 6.1.1
-  - name: geerlingguy.ruby
-    version: 3.2.0
   - name: baztian.asdf
     version: v0.0.4
