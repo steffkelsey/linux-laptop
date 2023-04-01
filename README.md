@@ -28,7 +28,7 @@ Second, install the dependencies for the main playbook and the roles.
 
 To provision all the roles in this repo for the entire linux-laptop, navigate
 to the root directory of this repo and run:  
-`$ ansible-playbook main.yml --ask-become-pass`  
+`$ ansible-playbook main.yml --ask-become-pass --extra-vars "go_root=/mnt/c/go"`  
 
 ## Creating Roles
 
