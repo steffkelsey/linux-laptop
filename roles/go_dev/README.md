@@ -17,7 +17,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
 Controls the Go version to install.
 
-    go_version: 1.17.6
+    go_version: 1.20.2
 
 Controls the temporary folder where the role stashes files during install. 
 

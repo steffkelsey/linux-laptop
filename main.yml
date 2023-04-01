@@ -8,7 +8,6 @@
     install_awscliv2: true
     install_docker: true
     install_nodejs: true
-    install_asdf: true
 
   pre_tasks:
     - name: linux-laptop | Update the apt cache
@@ -18,42 +17,10 @@
     - name: linux-laptop | Install the Ubuntu packages that I like
       include_tasks: tasks/packages.yml
 
-    - name: linux-laptop | Debug asdf_user
-      debug:
-        var: asdf_user
-
-    - name: linux-laptop | Maybe install asdf
-      include_role:
-        name: baztian.asdf
-      when: install_asdf
-      vars:
-        asdf_version: 0.9.0
-        asdf_sha256: >
-          f2ab54bf1d17e10f17e405c2fac29f0620a66b5c7a5200b5699e50e28ed210c8
-        asdf_plugins:
-          - name: terraform
-            versions: ["1.3.7"]
-            global: "1.3.7"
-          - name: packer
-            versions: ["1.8.5"]
-            global: "1.8.5"
-
     - name: linux-laptop | Check if /etc/zsh/zshrc exists
       stat:
         path: /etc/zsh/zshrc
       register: etc_zshrc
-
-    # Had an issue where asdf was not working in zsh. Discovered it was because
-    # the asdf role installs for all users in /etc/bash.bashrc which is never
-    # sourced if zsh is the default shell. Adding the same lines to
-    # /etc/zsh/zshrc fixed the issue. Because we already imported and ran the
-    # asdf role, we can grab the asdf_bashrc variable that the role used.
-    - name: linux-laptop | Maybe install asdf to the path for zsh
-      blockinfile:
-        path: /etc/zsh/zshrc
-        marker: "# {mark} ANSIBLE MANAGED BLOCK asdf"
-        block: "{{ asdf_bashrc }}"
-      when: install_asdf and etc_zshrc.stat.exists
 
     - name: linux-laptop | Maybe install go dev tools
       include_role:

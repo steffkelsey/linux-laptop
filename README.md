@@ -22,23 +22,20 @@ First, install Molecule, Ansible and the linters using the handy script.
 `$ ./install_dependencies.sh` 
 
 Second, install the dependencies for the main playbook and the roles.
-2. `$ ansible-galaxy install -r requirements.yml` in this directory  
+`$ ansible-galaxy install -r requirements.yml` in this directory  
 
 ## Running
 
 To provision all the roles in this repo for the entire linux-laptop, navigate
 to the root directory of this repo and run:  
-`$ ansible-playbook main.yml --ask-become-pass --extra-vars "asdf_user=$(whoami)"`
-
-The `asdf_user` variable is required for asdf to work since it operates out of
-the home directory.
+`$ ansible-playbook main.yml --ask-become-pass`  
 
 ## Creating Roles
 
 To create a new role:  
 
 1. navigate to the roles directory `$ cd roles`  
-2. use molecule to init a new role `$ molecule init role <role_name> --driver-name docker`
+2. use molecule to init a new role `$ molecule init role <role_name> --driver-name docker`  
 
 Now, you have a new folder inside the roles directory using your role name and all the
 associated sub-folders.
@@ -56,14 +53,14 @@ To run the tests locally, go to each role and run:
 
 To debug a role, go to the desired role within the roles folder:
 
-1. start the dev environment `$ molecule converge`
-2. ssh into the container `$ molecule login`
-3. rerun the playbook `$ molecule converge`
-4. run the linter `$ molecule lint`
-5. run the verify steps `$ molecule verify`
-6. clean up `$ molecule destroy`
+1. start the dev environment `$ molecule converge`  
+2. ssh into the container `$ molecule login`  
+3. rerun the playbook `$ molecule converge`  
+4. run the linter `$ molecule lint`  
+5. run the verify steps `$ molecule verify`  
+6. clean up `$ molecule destroy`  
 7. testing - see the Tests section above for running the entire cycle which includes creating, verifying, and destroying the environment
 
 ## TODO
-- [ ] Vagrant
-- [ ] Virtualbox
+- [ ] Fix Node install for CI
+- [ ] Fix Docker install for WSL2
