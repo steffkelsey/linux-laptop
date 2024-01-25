@@ -1,0 +1,24 @@
+- name: Create install directory
+  file:
+    path: /usr/local/hashicorp
+    state: directory
+    mode: '0755'
+
+- name: Install Packer
+  unarchive:
+    src: "https://releases.hashicorp.com/packer/{{ version }}/packer_{{ version }}_{{ os }}_amd64.zip"
+    dest: /usr/local/hashicorp
+    remote_src: yes
+  vars:
+    version: 1.10.0
+    os: "{{ ansible_facts['system']|lower }}"
+
+- name: Install Terraform
+  unarchive:
+    src: "https://releases.hashicorp.com/terraform/{{ version }}/terraform_{{ version }}_{{ os }}_amd64.zip"
+    dest: /usr/local/hashicorp
+    remote_src: yes
+  vars:
+    version: 1.7.1
+    os: "{{ ansible_facts['system']|lower }}"
+

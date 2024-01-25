@@ -17,6 +17,9 @@
     - name: linux-laptop | Install the Ubuntu packages that I like
       include_tasks: tasks/packages.yml
 
+    - name: linux-laptop | Install Hashicorp utils
+      include_tasks: tasks/hashicorp.yml
+
     - name: linux-laptop | Check if /etc/zsh/zshrc exists
       stat:
         path: /etc/zsh/zshrc
