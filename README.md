@@ -19,16 +19,23 @@ on my own projects. SRE work at ezCater is all Linux all day - no need for photo
 
 First, install Molecule, Ansible and the linters using the handy script.
 
-`$ ./install_dependencies.sh` 
+```bash
+./install_dependencies.sh
+```
 
 Second, install the dependencies for the main playbook and the roles.
-`$ ansible-galaxy install -r requirements.yml` in this directory  
+```bash
+ansible-galaxy install -r requirements.yml
+```
+in this directory
 
 ## Running
 
 To provision all the roles in this repo for the entire linux-laptop, navigate
 to the root directory of this repo and run:  
-`$ ansible-playbook main.yml --ask-become-pass --extra-vars "go_root=/mnt/c/go"`  
+```bash
+ansible-playbook main.yml --ask-become-pass --extra-vars "go_root=/mnt/c/go"
+```
 
 ## Creating Roles
 
@@ -43,11 +50,28 @@ associated sub-folders.
 ## Tests
 
 To test the main playbook, go to the top level directory and run:  
-`$ molecule test`  
+```bash
+molecule test
+```
 
 Each role has tests that are run via Github Actions (check the .github/workflows folder).
 To run the tests locally, go to each role and run:  
-`$ molecule test`  
+```bash
+molecule test
+```
+
+
+** WARNING **
+If an error containing "Credentials store error" pops up, you can solve by pre-pulling
+the required image with docker.
+
+```bash
+docker pull geerlingguy/docker-ubuntu2004-ansible:latest
+```
+
+There have been a bunch of errors around finding images in the remote repo in
+docker in WSL2 - not sure if this is WSL2 related or more recent changes to Docker
+Desktop.
 
 ## Debugging
 

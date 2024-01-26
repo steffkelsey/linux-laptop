@@ -31,18 +31,8 @@
       assert:
         that: "'Usage: zsh' in zsh_help_output.stdout"
 
-    - name: Capture asdf --help response when interactive zsh shell
-      command: zsh -i -c "asdf --help"
-      register: asdf_help_output
-      changed_when: false
-
-    - name: Check that asdf works from zsh
-      assert:
-        that: "'asdf plugin' in asdf_help_output.stdout"
-
-    # Also wanted to check that one of the plugins we installed is working in
-    # in zsh. Not to test asdf, but that the zshrc stuff got picked up for
-    # plugins/shims as well and not just the asdf executable.
+    # Also wanted to check that one of the apps we installed is working in
+    # zsh.
     - name: Capture terraform version response when interactive zsh shell
       command: zsh -i -c "terraform version"
       register: tf_version_output
