@@ -22,6 +22,5 @@ provisioner:
     group_vars:
       all:
         # The only user in the test containers is "root".
-        asdf_user: "root"
 verifier:
   name: ansible

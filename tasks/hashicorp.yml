@@ -21,4 +21,3 @@
   vars:
     version: 1.7.1
     os: "{{ ansible_facts['system']|lower }}"
-
