@@ -6,7 +6,7 @@
   vars:
     install_go_dev: true
     install_awscliv2: true
-    install_docker: true
+    install_docker: false
     install_nodejs: true
 
   pre_tasks:
