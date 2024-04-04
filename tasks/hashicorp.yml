@@ -21,3 +21,21 @@
   vars:
     version: 1.7.1
     os: "{{ ansible_facts['system']|lower }}"
+
+- name: Install Nomad
+  unarchive:
+    src: "https://releases.hashicorp.com/nomad/{{ version }}/nomad_{{ version }}_{{ os }}_amd64.zip"
+    dest: /usr/local/hashicorp
+    remote_src: yes
+  vars:
+    version: 1.7.6
+    os: "{{ ansible_facts['system']|lower }}"
+
+- name: Install Consul
+  unarchive:
+    src: "https://releases.hashicorp.com/consul/{{ version }}/consul_{{ version }}_{{ os }}_amd64.zip"
+    dest: /usr/local/hashicorp
+    remote_src: yes
+  vars:
+    version: 1.18.1
+    os: "{{ ansible_facts['system']|lower }}"
