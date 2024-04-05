@@ -23,6 +23,9 @@ First, install Molecule, Ansible and the linters using the handy script.
 ./install_dependencies.sh
 ```
 
+Restart your terminal for the newly installed by pip packages to show in the
+path.
+
 Second, install the dependencies for the main playbook and the roles.
 ```bash
 ansible-galaxy install -r requirements.yml
