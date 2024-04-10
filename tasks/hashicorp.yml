@@ -39,3 +39,11 @@
   vars:
     version: 1.18.1
     os: "{{ ansible_facts['system']|lower }}"
+
+- name: Add /usr/local/hashicorp to PATH
+  lineinfile:
+    path: /etc/environment
+    state: present
+    backrefs: true
+    regexp: 'PATH=(["]*)((?!.*?\/usr\/local\/hashicorp).*?)(["]*)$'
+    line: 'PATH=\1\2:/usr/local/hashicorp\3'
