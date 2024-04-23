@@ -37,6 +37,12 @@ in this directory
 To provision all the roles in this repo for the entire linux-laptop, navigate
 to the root directory of this repo and run:  
 ```bash
+ansible-playbook main.yml --ask-become-pass
+```
+
+To install Go in a different folder (sometimes when running WSL it is useful for Go to be
+on the Windows filesystem)
+```bash
 ansible-playbook main.yml --ask-become-pass --extra-vars "go_root=/mnt/c/go"
 ```
 
