@@ -10,7 +10,7 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 1.10.0
+    version: 1.10.3
     os: "{{ ansible_facts['system']|lower }}"
 
 - name: Install Terraform
@@ -19,31 +19,5 @@
     dest: /usr/local/hashicorp
     remote_src: yes
   vars:
-    version: 1.7.1
+    version: 1.8.1
     os: "{{ ansible_facts['system']|lower }}"
-
-- name: Install Nomad
-  unarchive:
-    src: "https://releases.hashicorp.com/nomad/{{ version }}/nomad_{{ version }}_{{ os }}_amd64.zip"
-    dest: /usr/local/hashicorp
-    remote_src: yes
-  vars:
-    version: 1.7.6
-    os: "{{ ansible_facts['system']|lower }}"
-
-- name: Install Consul
-  unarchive:
-    src: "https://releases.hashicorp.com/consul/{{ version }}/consul_{{ version }}_{{ os }}_amd64.zip"
-    dest: /usr/local/hashicorp
-    remote_src: yes
-  vars:
-    version: 1.18.1
-    os: "{{ ansible_facts['system']|lower }}"
-
-- name: Add /usr/local/hashicorp to PATH
-  lineinfile:
-    path: /etc/environment
-    state: present
-    backrefs: true
-    regexp: 'PATH=(["]*)((?!.*?\/usr\/local\/hashicorp).*?)(["]*)$'
-    line: 'PATH=\1\2:/usr/local/hashicorp\3'
