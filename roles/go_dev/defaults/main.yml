@@ -1,8 +1,0 @@
----
-# defaults file for go_dev
-
-# Go language install
-go_version: 1.22.3
-go_temporary_dir: /tmp
-
-# Go packages we like for dev

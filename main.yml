@@ -1,50 +1,19 @@
 ---
-- name: Install linux Laptop dev machine
+- name: Configure Linux dev machine
   hosts: all
-  become: true
 
-  vars:
-    install_go_dev: true
-    install_awscliv2: true
-    install_docker: false
-    install_nodejs: true
+  vars_files:
+    - default.config.yml
 
-  pre_tasks:
-    - name: linux-laptop | Update the apt cache
-      apt: cache_valid_time=86400
-
-  tasks:
-    - name: linux-laptop | Install the Ubuntu packages that I like
-      include_tasks: tasks/packages.yml
-
-    - name: linux-laptop | Install Hashicorp utils
-      include_tasks: tasks/hashicorp.yml
-
-    - name: linux-laptop | Check if /etc/zsh/zshrc exists
-      stat:
-        path: /etc/zsh/zshrc
-      register: etc_zshrc
-
-    - name: linux-laptop | Maybe install go dev tools
-      include_role:
-        name: go_dev
-      when: install_go_dev
-
-    - name: linux-laptop | Maybe install AWS CLI v2
-      include_role:
-        name: awscliv2
-      when: install_awscliv2
-
-    - name: linux-laptop | Maybe install nodejs
-      include_role:
-        name: geerlingguy.nodejs
-      when: install_nodejs
-      vars:
-        nodejs_version: "18.x"
-        nodejs_npm_global_packages:
-          - name: yarn
-
-    - name: linux-laptop | Maybe install docker
-      include_role:
-        name: geerlingguy.docker
+  roles:
+    - role: geerlingguy.dotfiles
+      when: configure_dotfiles
+    - role: geerlingguy.docker
       when: install_docker
+ 
+  #tasks:
+
+        #- name: linux-dev | Maybe install docker
+        #  include_role:
+        #    name: geerlingguy.docker
+        #  when: install_docker
