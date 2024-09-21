@@ -9,10 +9,17 @@ id=$(lsb_release -si)
 # And may as well get ansible from there as well
 
 if [ "$id" == "Ubuntu" ]; then
-  # ubuntu setup
-  sudo apt-get update
-  sudo apt-get install python3.8 python3-pip libssl-dev
-  python3 -m pip install -r requirements.txt
+  # make sure venv will work
+  apt install python3.12-venv
+
+  # Setup using a virtual env
+  python3 -m venv venv
+  # activate the env
+  source venv/bin/activate
+
+  # Install the ansible developer tool (ADT)
+
+
 else
   echo "Not setup for distro: $id"
   echo "EXITING WITHOUT INSTALLING ANSIBLE"

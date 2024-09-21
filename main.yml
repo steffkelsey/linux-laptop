@@ -40,7 +40,7 @@
         name: geerlingguy.nodejs
       when: install_nodejs
       vars:
-        nodejs_version: "18.x"
+        nodejs_version: "22.x"
         nodejs_npm_global_packages:
           - name: yarn
 

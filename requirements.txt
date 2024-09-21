@@ -1,4 +1,5 @@
-ansible==6.7.0
-molecule[docker,lint]==4.0.4
+ansible==10.4.0
+ansible-core=2.17.4
+molecule==24.9.0
+molecule-plugins[docker]==23.5.3
 yamllint==1.35.1
-ansible-lint==5.4.0
