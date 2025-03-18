@@ -11,9 +11,9 @@
     - role: geerlingguy.docker
       when: install_docker
  
-  #tasks:
+  tasks:
+    - name: linux-dev | Install packages
+      include_tasks: tasks/packages.yml
 
-        #- name: linux-dev | Maybe install docker
-        #  include_role:
-        #    name: geerlingguy.docker
-        #  when: install_docker
+    - name: linux-dev | Connect dotfiles
+      include_tasks: tasks/dotfiles.yml
