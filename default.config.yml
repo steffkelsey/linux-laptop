@@ -6,8 +6,18 @@ dotfiles_repo: https://github.com/steffkelsey/dotfiles.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/steffkelsey/dotfiles
 dotfiles_files:
+  - .aliases.bash
+  - .aliases.docker
+  - .bash_prompt
   - .gitconfig
   - .gitignore
   - .gitmessage
+  - .git_prompt
   - .ideavimrc
   - .inputrc
+  - .vimrc
+
+packages:
+  - vim
+
+packages_state: present

@@ -1,0 +1,32 @@
+---
+- name: linux-dev | Edit .bash_profile to load the dotfiles
+  ansible.builtin.blockinfile:
+    path: '{{ ansible_env.HOME }}/.bash_profile'
+    marker: "# {mark} ALIASES AND PROMPT"
+    block: |
+      # import the aliases
+      . ~/.aliases.bash
+      # set the custom prompt
+      . ~/.bash_prompt
+
+- name: linux-dev | Edit .bash_profile for shell before
+  ansible.builtin.blockinfile:
+    path: '{{ ansible_env.HOME }}/.bash_profile'
+    insertbefore: BOF
+    marker: "# {mark} SHELL BEFORE"
+    block: |
+      # Allow local customizations in the ~/.shell_local_before file
+      if [ -f ~/.shell_local_before ]; then
+        . ~/.shell_local_before
+      fi 
+
+- name: linux-dev | Edit .bash_profile for shell after
+  ansible.builtin.blockinfile:
+    path: '{{ ansible_env.HOME }}/.bash_profile'
+    insertafter: EOF
+    marker: "# {mark} SHELL AFTER"
+    block: |
+      # Allow local customizations in the ~/.shell_local_after file
+      if [ -f ~/.shell_local_after ]; then
+        . ~/.shell_local_after
+      fi 
