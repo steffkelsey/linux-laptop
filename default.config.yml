@@ -15,6 +15,7 @@ dotfiles_files:
   - .git_prompt
   - .ideavimrc
   - .inputrc
+  - .tmux.conf
   - .vimrc
 
 packages:
