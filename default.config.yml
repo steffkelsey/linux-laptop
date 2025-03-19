@@ -18,6 +18,11 @@ dotfiles_files:
   - .vimrc
 
 packages:
+  - firewalld
+  - podman
+  - tmux
   - vim
 
 packages_state: present
+
+git_protocol_port: 9418/tcp

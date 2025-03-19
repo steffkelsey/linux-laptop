@@ -1,0 +1,12 @@
+---
+- name: Start and enable firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: linux-dev | Open tcp port for git protocol
+  ansible.posix.firewalld:
+    port: "{{ git_protocol_port }}"
+    permanent: true
+    state: enabled
