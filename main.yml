@@ -1,7 +1,6 @@
 ---
 - name: Configure Linux dev machine
   hosts: all
-  become: true
 
   vars_files:
     - default.config.yml
