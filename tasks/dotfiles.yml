@@ -1,7 +1,8 @@
 ---
-- name: linux-dev | Edit .bash_profile to load the dotfiles
+- name: linux-dev | Edit .bashrc to load the dotfiles
+  become: false
   ansible.builtin.blockinfile:
-    path: '{{ ansible_env.HOME }}/.bash_profile'
+    path: '~/.bashrc'
     marker: "# {mark} ALIASES AND PROMPT"
     block: |
       # import the aliases
@@ -9,9 +10,10 @@
       # set the custom prompt
       . ~/.bash_prompt
 
-- name: linux-dev | Edit .bash_profile for shell before
+- name: linux-dev | Edit .bashrc for shell before
+  become: false
   ansible.builtin.blockinfile:
-    path: '{{ ansible_env.HOME }}/.bash_profile'
+    path: '~/.bashrc'
     insertbefore: BOF
     marker: "# {mark} SHELL BEFORE"
     block: |
@@ -20,9 +22,10 @@
         . ~/.shell_local_before
       fi 
 
-- name: linux-dev | Edit .bash_profile for shell after
+- name: linux-dev | Edit .bashrc for shell after
+  become: false
   ansible.builtin.blockinfile:
-    path: '{{ ansible_env.HOME }}/.bash_profile'
+    path: '~/.bashrc'
     insertafter: EOF
     marker: "# {mark} SHELL AFTER"
     block: |
