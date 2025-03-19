@@ -8,16 +8,17 @@ software development (constantly changes).
 Currently, I am running Rocky Linux 9.
 Why? Because it is the only distro supported for Davinci Resolve and I want to edit video on this machine as well.
 
-[x] Bash (no zsh)
-[ ] Custom Git prompt (git-prompt.sh base)
-[x] dotfiles switch to Jeff Geerling method through ansible geerlingguy.dotfiles
-[x] docker - use ansible galaxy role geerlingguy.docker
+[x] Bash
+[x] Custom Git prompt (git-prompt.sh base)
+[x] dotfiles (use ansible galaxy role geerlingguy.dotfiles)
+[x] docker (use ansible galaxy role geerlingguy.docker)
 packages
- - [ ] tmux
- - [ ] podman
+ - [x] firewalld
+ - [x] podman
+ - [x] tmux
  - [ ] mise
- - [ ] vim
-[ ] Open port 9418/tcp in firewalld for git protocol (to pull submodules etc) ansible.posix galaxy collection has firewalld commands
+ - [x] vim
+[x] Open port 9418/tcp in firewalld for git protocol (to pull submodules etc) ansible.posix galaxy collection has firewalld commands
 
 Most of the time, use containers to run stuff instead of installing directly
 eg: spin up a container for the Go env rather than installing Go
