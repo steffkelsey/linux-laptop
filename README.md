@@ -26,14 +26,19 @@ eg: spin up a container for the Go env rather than installing Go
 
 ## Setup
 
-First, install Molecule, Ansible and the linters using the handy script.
+First, install Molecule, Ansible and the linters in a virtual env
 
 ```bash
-./install_dependencies.sh
-```
+# Setup using a virtual env
+python3 -m venv .venv
+# activate the env
+source .venv/bin/activate
+# (optional) update pip to the latest
+pip3 install --upgrade pip
+# Install everything from the requirements file
+pip3 install -f requirements.txt
 
-Restart your terminal for the newly installed by pip packages to show in the
-path.
+```
 
 Second, install the dependencies for the main playbook and the roles.
 ```bash
