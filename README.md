@@ -63,6 +63,10 @@ I have had problems with the geerlingguy ansible-role-docker on a clean install 
 ansible-galaxy collection install community.general
 ```
 
+Also had trouble testing the playbook with molecule from a host running Rocky Linux 9. The issue is with older docker containers needing the host to have ip_tables present. Info [here](https://ryandaniels.ca/blog/docker-and-trouble-with-red-hat-enterprise-linux-9-iptables/).
+
+To see the error, login to a running container and try `dockerd`. You should see an error about ip_tables not being present. In that case, use the fix from the link above.
+
 ## Debugging
 
 To debug the playbook, from the project root:  

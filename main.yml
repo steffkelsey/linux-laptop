@@ -20,3 +20,6 @@
 
     - name: linux-dev | Configure firewall
       include_tasks: tasks/ports.yml
+
+    - name: linux-dev | Configure tmux plugin manager
+      include_tasks: tasks/tpm.yml
