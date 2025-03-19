@@ -1,6 +1,7 @@
 ---
-- name: linux-dev | Clone tpm to $HOME/.tmux/plugins/tpm
+- name: linux-dev | Clone tpm to ~/.tmux/plugins/tpm
+  become: false
   ansible.builtin.git:
     repo: "https://github.com/tmux-plugins/tpm"
-    dest: '{{ ansible_env.HOME }}/.tmux/plugins/tpm'
+    dest: '~/.tmux/plugins/tpm'
     single_branch: yes
