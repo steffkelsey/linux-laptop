@@ -14,3 +14,5 @@ platforms:
     pre_build_image: true
 provisioner:
   name: ansible
+  env:
+    GLOBAL_BECOME: false

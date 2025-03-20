@@ -1,4 +1,6 @@
 ---
+global_become: true
+
 configure_dotfiles: true
 install_docker: true
 
