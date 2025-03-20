@@ -1,10 +1,16 @@
 ---
 - name: Configure Linux dev machine
   hosts: all
+  become: "{{ lookup('ansible.builtin.env', 'GLOBAL_BECOME', default='true') }}"
 
   vars_files:
     - default.config.yml
 
+  pre_tasks:
+    - name: limux-dev | debug
+      ansible.builtin.debug:
+        msg: "provisioner.env.GLOBAL_BECOME: {{ lookup('ansible.builtin.env', 'GLOBAL_BECOME', default='true') }}"
+  
   roles:
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
