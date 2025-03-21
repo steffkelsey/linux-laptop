@@ -8,21 +8,21 @@ software development (constantly changes).
 Currently, I am running Rocky Linux 9.
 Why? Because it is the only distro supported for Davinci Resolve and I want to edit video on this machine as well.
 
-[x] Bash
-[x] Custom Git prompt (git-prompt.sh base)
-[x] dotfiles (use ansible galaxy role geerlingguy.dotfiles)
-[x] docker (use ansible galaxy role geerlingguy.docker)
-packages
- - [x] firewalld
- - [x] podman
- - [x] tmux
- - [ ] mise
- - [x] vim
-[x] Open port 9418/tcp in firewalld for git protocol (to pull submodules etc) ansible.posix galaxy collection has firewalld commands
+- [x] Bash  
+- [x] Custom Git prompt (git-prompt.sh base)  
+- [x] dotfiles (use ansible galaxy role geerlingguy.dotfiles)  
+- [x] docker (use ansible galaxy role geerlingguy.docker)  
+- [x] Open port 9418/tcp in firewalld for git protocol (to pull submodules etc) ansible.posix galaxy collection has firewalld commands
+
+packages  
+ - [x] firewalld  
+ - [x] podman  
+ - [x] tmux  
+ - [ ] mise (nice to have)  
+ - [ ] neovim  
 
 Most of the time, use containers to run stuff instead of installing directly
 eg: spin up a container for the Go env rather than installing Go
-
 
 ## Setup
 
@@ -63,14 +63,21 @@ molecule test
 
 ## FYI 
 
-I have had problems with the geerlingguy ansible-role-docker on a clean install of Rocky Linux 9 and Ansible  where it required the ini_file module from the community.general collection.  
-```bash
+I have had problems with the geerlingguy ansible-role-docker on a clean install
+of Rocky Linux 9 and Ansible  where it required the ini_file module from the
+community.general collection. Fix with:  
+```bash 
 ansible-galaxy collection install community.general
 ```
 
-Also had trouble testing the playbook with molecule from a host running Rocky Linux 9. The issue is with older docker containers needing the host to have ip_tables present. Info [here](https://ryandaniels.ca/blog/docker-and-trouble-with-red-hat-enterprise-linux-9-iptables/).
+Also had trouble testing the playbook with molecule from a host running Rocky
+Linux 9. The issue is with older docker containers needing the host to have
+ip_tables present. Info
+[here](https://ryandaniels.ca/blog/docker-and-trouble-with-red-hat-enterprise-linux-9-iptables/).
 
-To see the error, login to a running container and try `dockerd`. You should see an error about ip_tables not being present. In that case, use the fix from the link above.
+To see the error, login to a running container and try `dockerd`. You should
+see an error about ip_tables not being present. In that case, use the fix from
+the link above.
 
 ## Debugging
 
@@ -82,5 +89,6 @@ To debug the playbook, from the project root:
 4. run the linter `$ molecule lint`  
 5. run the verify steps `$ molecule verify`  
 6. clean up `$ molecule destroy`  
-7. testing - see the Tests section above for running the entire cycle which includes creating, verifying, and destroying the environment
+7. testing - see the Tests section above for running the entire cycle which
+includes creating, verifying, and destroying the environment
 
