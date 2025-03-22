@@ -30,5 +30,5 @@
     - name: linux-dev | Configure tmux plugin manager
       include_tasks: tasks/tpm.yml
 
-    - name: linux-dev | Configure vim-plug manager
-      include_tasks: tasks/vimplug.yml
+    - name: linux-dev | Configure neovim
+      include_tasks: tasks/neovim.yml
