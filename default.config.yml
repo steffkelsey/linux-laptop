@@ -18,13 +18,23 @@ dotfiles_files:
   - .ideavimrc
   - .inputrc
   - .tmux.conf
-  - .vimrc
 
 packages:
   - firewalld
   - podman
   - tmux
-  - vim
+  - compat-lua-libs # start neovim requirements
+  - libtermkey
+  - gcc
+  - make
+  - libtree-sitter
+  - libvterm
+  - luajit
+  - luajit2.1-luv
+  - msgpack
+  - unibilium
+  - xsel # end neovim requirements
+  - ripgrep # for grep searching with Telescope
 
 packages_state: present
 

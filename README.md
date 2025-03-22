@@ -19,7 +19,7 @@ packages
  - [x] podman  
  - [x] tmux  
  - [ ] mise (nice to have)  
- - [ ] neovim  
+ - [x] neovim  
 
 Most of the time, use containers to run stuff instead of installing directly
 eg: spin up a container for the Go env rather than installing Go

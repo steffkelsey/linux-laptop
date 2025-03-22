@@ -1,0 +1,49 @@
+- name: linux-dev | Create ~/.config/share directory
+  become: false
+  ansible.builtin.file:
+    path: '~/.config/share'
+    state: directory
+    mode: "0755"
+
+- name: linux-dev | Download neovim tar.gz and unarchive to ~/.config/share
+  become: false
+  ansible.builtin.unarchive:
+    src: "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
+    dest: '~/.config/share'
+    remote_src: true
+
+- name: linux-dev | Make sure ~/.local/bin exists
+  become: false
+  ansible.builtin.file:
+    path: '~/.local/bin'
+    state: directory
+    mode: "0755"
+
+- name: linux-dev | Link neovim to ~/.local/bin
+  become: false
+  ansible.builtin.file:
+    state: link
+    src: '~/.config/share/nvim-linux-x86_64/bin/nvim'
+    dest: '~/.local/bin/nvim'
+
+- name: linux-dev | Check if ~/.config/nvim exists
+  become: false
+  ansible.builtin.stat:
+    path: '~/.config/nvim'
+  register: config_nvim
+
+- name: linux-dev | Maybe create ~/.config/nvim directory
+  become: false
+  ansible.builtin.file:
+    path: '~/.config/nvim'
+    state: directory
+    mode: "0755"
+  when: not config_nvim.stat.exists
+
+- name: linux-dev | Maybe clone nvchad
+  become: false
+  ansible.builtin.git:
+    repo: "https://github.com/NvChad/starter"
+    dest: '~/.config/nvim'
+    single_branch: yes
+  when: not config_nvim.stat.exists
