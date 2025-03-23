@@ -1,0 +1,20 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: "stat ~/.config/nvim/init.lua exists"
+      become: false
+      ansible.builtin.stat:
+        path: "~/.config/nvim/init.ua"
+      register: init_lua_stat
+
+
+    - name: Verify nvchad config NOT installed
+      become: false
+      ansible.builtin.assert:
+        that:
+          - init_lua_stat.stat.exists == False
+        success_msg: "~/.config/nvim/init.lua does not exist"
+        fail_msg: "~/.config/nvim/init.lua exists when it should not"
