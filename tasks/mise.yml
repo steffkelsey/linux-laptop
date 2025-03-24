@@ -1,0 +1,13 @@
+---
+- name: linux-dev | Add mise repo
+  get_url:
+    url: 'https://mise.jdx.dev/rpm/mise.repo'
+    dest: '/etc/yum.repos.d/mise.repo'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: linux-dev | Install mise package
+  ansible.builtin.package:
+    name: mise
+    state: present

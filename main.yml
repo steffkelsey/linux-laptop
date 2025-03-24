@@ -20,6 +20,9 @@
     - name: linux-dev | Install packages
       include_tasks: tasks/packages.yml
 
+    - name: linux-dev | Install mise
+      include_tasks: tasks/mise.yml
+
     - name: linux-dev | Connect dotfiles
       include_tasks: tasks/dotfiles.yml
 
