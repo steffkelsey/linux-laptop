@@ -54,6 +54,9 @@ to the root directory of this repo and run:
 ansible-playbook main.yml --ask-become-pass
 ```
 
+If Neovim is a fresh install, you will need to run :MasonInstallAll to install
+the default lsp servers.
+
 ## Tests
 
 To test the main playbook, go to the top level directory and run:  

@@ -1,10 +1,9 @@
 ---
-global_become: true
-
 configure_dotfiles: true
 install_docker: true
 
 dotfiles_repo: https://github.com/steffkelsey/dotfiles.git
+dotfiles_repo_ssh: git@github.com:steffkelsey/dotfiles.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/steffkelsey/dotfiles
 dotfiles_files:
@@ -18,11 +17,17 @@ dotfiles_files:
   - .ideavimrc
   - .inputrc
   - .tmux.conf
+  - .config/nvim/lua/chadrc.lua
+  - .config/nvim/lua/mappings.lua
+  - .config/nvim/lua/options.lua
+  - .config/nvim/lua/plugins/init.lua
 
 packages:
   - firewalld
   - podman
   - tmux
+  - unzip
+  - zip
   - compat-lua-libs # start neovim requirements
   - libtermkey
   - gcc
@@ -39,3 +44,8 @@ packages:
 packages_state: present
 
 git_protocol_port: 9418/tcp
+
+nvchad_starter_useless_files:
+  - LICENSE
+  - README.md
+  - .git

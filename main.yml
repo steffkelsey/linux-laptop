@@ -7,9 +7,8 @@
     - default.config.yml
 
   pre_tasks:
-    - name: limux-dev | debug
-      ansible.builtin.debug:
-        msg: "provisioner.env.GLOBAL_BECOME: {{ lookup('ansible.builtin.env', 'GLOBAL_BECOME', default='true') }}"
+    - name: linux-dev | Configure NvChad Starter
+      include_tasks: tasks/nvchad.yml
   
   roles:
     - role: geerlingguy.dotfiles
