@@ -18,7 +18,7 @@ packages
  - [x] firewalld  
  - [x] podman  
  - [x] tmux  
- - [ ] mise (nice to have)  
+ - [x] mise (nice to have)  
  - [x] neovim  
 
 Most of the time, use containers to run stuff instead of installing directly
