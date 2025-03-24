@@ -5,3 +5,4 @@
     repo: "https://github.com/tmux-plugins/tpm"
     dest: '~/.tmux/plugins/tpm'
     single_branch: yes
+    depth: 1

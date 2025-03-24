@@ -16,3 +16,4 @@ provisioner:
   name: ansible
   env:
     GLOBAL_BECOME: false
+    BLOCK_REMOTE_SET_URL_SSH: true
