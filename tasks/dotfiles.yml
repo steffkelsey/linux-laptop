@@ -3,7 +3,7 @@
   become: false
   ansible.builtin.blockinfile:
     path: '~/.bashrc'
-    marker: "# {mark} ALIASES AND PROMPT"
+    marker: "# {mark} ALIASES AND PROMPT (ANSIBLE)"
     block: |
       # import the aliases
       . ~/.aliases.bash
@@ -15,7 +15,7 @@
   ansible.builtin.blockinfile:
     path: '~/.bashrc'
     insertbefore: BOF
-    marker: "# {mark} SHELL BEFORE"
+    marker: "# {mark} SHELL BEFORE (ANSIBLE)"
     block: |
       # Allow local customizations in the ~/.shell_local_before file
       if [ -f ~/.shell_local_before ]; then
@@ -27,12 +27,19 @@
   ansible.builtin.blockinfile:
     path: '~/.bashrc'
     insertafter: EOF
-    marker: "# {mark} SHELL AFTER"
+    marker: "# {mark} SHELL AFTER (ANSIBLE)"
     block: |
       # Allow local customizations in the ~/.shell_local_after file
       if [ -f ~/.shell_local_after ]; then
         . ~/.shell_local_after
       fi 
+
+- name: linux-dev | Debug env vars
+  become: false
+  ansible.builtin.debug:
+    msg: "dotfiles_repo_ssh: {{ dotfiles_repo_ssh }}, block_this: {{ block_this }}, BLOCK_REMOTE_SET_URL_SSH: {{ lookup('ansible.builtin.env','BLOCK_REMOTE_SET_URL_SSH', default='false') }}"
+  vars:
+    block_this: "{{ lookup('ansible.builtin.env', 'BLOCK_REMOTE_SET_URL_SSH', default='false') }}"
 
 - name: linux-dev | Maybe change remote url to ssh
   become: false
@@ -45,4 +52,4 @@
     block_this: "{{ lookup('ansible.builtin.env', 'BLOCK_REMOTE_SET_URL_SSH', default='false') }}"
   when: 
     - dotfiles_repo_ssh
-    - not block_this
+    - not (block_this | bool)
