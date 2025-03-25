@@ -36,7 +36,7 @@ source .venv/bin/activate
 # (optional) update pip to the latest
 pip3 install --upgrade pip
 # Install everything from the requirements file
-pip3 install -f requirements.txt
+pip3 install -r requirements.txt
 
 ```
 

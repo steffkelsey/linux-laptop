@@ -11,3 +11,11 @@
   ansible.builtin.package:
     name: mise
     state: present
+
+- name: linux-dev | Edit .bashrc for mise activation
+  become: false
+  ansible.builtin.blockinfile:
+    path: '~/.bashrc'
+    marker: '# {mark} MISE ACTIVATION (ANSIBLE)'
+    block: |
+      eval "$(/usr/bin/mise activate bash)"
