@@ -28,6 +28,8 @@ packages:
   - tmux
   - unzip
   - zip
+  - hplip # start printer setup fixes
+  - nss-mdns # end printer setup fixes
   - compat-lua-libs # start neovim requirements
   - libtermkey
   - gcc
@@ -44,6 +46,7 @@ packages:
 packages_state: present
 
 git_protocol_port: 9418/tcp
+cups_protocol_port: 631/tcp
 
 nvchad_starter_useless_files:
   - LICENSE
