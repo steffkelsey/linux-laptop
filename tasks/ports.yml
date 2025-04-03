@@ -10,3 +10,9 @@
     port: "{{ git_protocol_port }}"
     permanent: true
     state: enabled
+
+- name: linux-dev | Open tcp port for CUPS print server
+  ansible.posix.firewalld:
+    port: "{{ cups_protocol_port }}"
+    permanent: true
+    state: enabled
