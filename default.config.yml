@@ -23,6 +23,7 @@ dotfiles_files:
   - .config/nvim/lua/plugins/init.lua
 
 packages:
+  - exfatprogs
   - firewalld
   - podman
   - tmux
