@@ -22,6 +22,10 @@ dotfiles_files:
   - .config/nvim/lua/options.lua
   - .config/nvim/lua/plugins/init.lua
 
+repos:
+  - crb
+repo_state: enabled
+
 packages:
   - exfatprogs
   - firewalld
@@ -43,6 +47,8 @@ packages:
   - unibilium
   - xsel # end neovim requirements
   - ripgrep # for grep searching with Telescope
+  - ffmpeg
+  - gstreamer1-libav
 
 packages_state: present
 
