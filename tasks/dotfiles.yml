@@ -51,5 +51,5 @@
   vars:
     block_this: "{{ lookup('ansible.builtin.env', 'BLOCK_REMOTE_SET_URL_SSH', default='false') }}"
   when: 
-    - dotfiles_repo_ssh
+    - dotfiles_repo_ssh is not defined or dotfiles_repo_ssh == ""
     - not (block_this | bool)
