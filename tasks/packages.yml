@@ -1,4 +1,33 @@
 ---
+- name: linux-dev | Ensure enable repositories
+  community.general.dnf_config_manager:
+    name: "{{ repos }}"
+    state: "{{ repo_state }}"
+  when: ansible_distribution == "Rocky"
+
+- name: linux-dev | Maybe update package cache with dnf
+  ansible.builtin.dnf:
+    update_cache: yes
+  changed_when: false
+  when: ansible_distribution == "Rocky"
+
+- name: linux-dev | Import EPEL and EPEL Next repos
+  ansible.builtin.dnf:
+    name:
+      - https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+      - https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-9.noarch.rpm
+    state: present
+  when: ansible_distribution == "Rocky"
+
+- name: linux-dev | Import RPM Fusion repo
+  ansible.builtin.dnf:
+    name: 
+      - "https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+      - "https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+    state: present
+    disable_gpg_check: true
+  when: ansible_distribution == "Rocky"
+
 - name: linux-dev | Install packages
   ansible.builtin.package:
     name: "{{ packages }}"
