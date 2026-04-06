@@ -21,7 +21,7 @@
     depth: 1
   when: not config_nvim.stat.exists
 
-# Remove the README, LICENSE files and .git directory
+# Remove the README, LICENSE files, and .git directory
 - name: linux-dev | Maybe remove NvChad/starter useless files
   become: false
   ansible.builtin.file:

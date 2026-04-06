@@ -59,3 +59,8 @@ nvchad_starter_useless_files:
   - LICENSE
   - README.md
   - .git
+  - lua/chadrc.lua
+  - lua/mappings.lua
+  - lua/options.lua
+  - lua/plugins/init.lua
+
