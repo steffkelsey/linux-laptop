@@ -16,3 +16,15 @@
     port: "{{ cups_protocol_port }}"
     permanent: true
     state: enabled
+
+- name: linux-dev | Open tcp port for mDNS avahi
+  ansible.posix.firewalld:
+    port: "{{ mdns_tcp_protocol_port }}"
+    permanent: true
+    state: enabled
+
+- name: linux-dev | Open udp port for mDNS avahi
+  ansible.posix.firewalld:
+    port: "{{ mdns_udp_protocol_port }}"
+    permanent: true
+    state: enabled

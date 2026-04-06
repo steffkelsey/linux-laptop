@@ -27,6 +27,7 @@ repos:
 repo_state: enabled
 
 packages:
+  - avahi
   - exfatprogs
   - firewalld
   - podman
@@ -54,6 +55,8 @@ packages_state: present
 
 git_protocol_port: 9418/tcp
 cups_protocol_port: 631/tcp
+mdns_udp_protocol_port: 5353/udp
+mdns_tcp_protocol_port: 5353/tcp
 
 nvchad_starter_useless_files:
   - LICENSE
