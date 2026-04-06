@@ -63,4 +63,3 @@ nvchad_starter_useless_files:
   - lua/mappings.lua
   - lua/options.lua
   - lua/plugins/init.lua
-
