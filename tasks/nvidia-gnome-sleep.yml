@@ -68,4 +68,3 @@
     name: gnome-shell-suspend
     state: stopped
     enabled: yes
-
