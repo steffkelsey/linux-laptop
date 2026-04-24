@@ -6,7 +6,7 @@
   vars_files:
     - default.config.yml
 
-  pre_tasks:
+  #pre_tasks:
     - name: linux-dev | Configure NvChad Starter
       include_tasks: tasks/nvchad.yml
   
@@ -19,6 +19,9 @@
   tasks:
     - name: linux-dev | Install packages
       include_tasks: tasks/packages.yml
+
+    - name: linux-dev | Patch gnome sleep issue
+      include_tasks: tasks/nvidia-gnome-sleep.yml
 
     - name: linux-dev | Install mise
       include_tasks: tasks/mise.yml

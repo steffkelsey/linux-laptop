@@ -1,0 +1,71 @@
+---
+- name: linux-dev | Create /usr/local/bin/suspend-gnome-shell.sh
+  become: true
+  ansible.builtin.copy:
+    dest: /usr/local/bin/suspend-gnome-shell.sh
+    content: |
+      #!/bin/bash
+
+      case "$1" in
+          suspend)
+              killall -STOP gnome-shell
+              ;;
+          resume)
+              killall -CONT gnome-shell
+              ;;
+      esac 
+    mode: '0755'  
+
+- name: linux-dev | Create /etc/systemd/system/gnome-shell-suspend.service
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/gnome-shell-suspend.service
+    content: |
+      [Unit]
+      Description=Suspend gnome-shell
+      Before=systemd-suspend.service
+      Before=systemd-hibernate.service
+      Before=nvidia-suspend.service
+      Before=nvidia-hibernate.service
+
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/local/bin/suspend-gnome-shell.sh suspend
+
+      [Install]
+      WantedBy=systemd-suspend.service
+      WantedBy=systemd-hibernate.service
+
+- name: linux-dev | Create /etc/systemd/system/gnome-shell-resume.service
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/gnome-shell-resume.service
+    content: |
+      [Unit]
+      Description=Resume gnome-shell
+      After=systemd-suspend.service
+      After=systemd-hibernate.service
+      After=nvidia-resume.service
+
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/local/bin/suspend-gnome-shell.sh resume
+
+      [Install]
+      WantedBy=systemd-suspend.service
+      WantedBy=systemd-hibernate.service
+
+- name: linux-dev | Enable and start gnome-shell-resume service
+  become: true
+  ansible.builtin.service:
+    name: gnome-shell-resume
+    state: stopped
+    enabled: yes
+
+- name: linux-dev | Enable and start gnome-shell-suspend service
+  become: true
+  ansible.builtin.service:
+    name: gnome-shell-suspend
+    state: stopped
+    enabled: yes
+
