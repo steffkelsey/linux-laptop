@@ -38,6 +38,7 @@ packages:
   - hplip # start printer setup fixes
   - nss-mdns # end printer setup fixes
   - compat-lua-libs # start neovim requirements
+  - clang
   - libtermkey
   - gcc
   - make
