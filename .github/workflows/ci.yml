@@ -33,7 +33,7 @@ jobs:
     strategy:
       matrix:
         distro:
-          - rockylinux9
+          - rockylinux10
 
     steps:
       - name: Check out the codebase.

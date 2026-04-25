@@ -6,7 +6,7 @@
   vars_files:
     - default.config.yml
 
-  #pre_tasks:
+  pre_tasks:
     - name: linux-dev | Configure NvChad Starter
       include_tasks: tasks/nvchad.yml
   
