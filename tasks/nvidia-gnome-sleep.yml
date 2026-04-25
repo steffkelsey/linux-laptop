@@ -1,6 +1,5 @@
 ---
 - name: linux-dev | Create /usr/local/bin/suspend-gnome-shell.sh
-  become: true
   ansible.builtin.copy:
     dest: /usr/local/bin/suspend-gnome-shell.sh
     content: |
@@ -17,7 +16,6 @@
     mode: '0755'  
 
 - name: linux-dev | Create /etc/systemd/system/gnome-shell-suspend.service
-  become: true
   ansible.builtin.copy:
     dest: /etc/systemd/system/gnome-shell-suspend.service
     content: |
@@ -37,7 +35,6 @@
       WantedBy=systemd-hibernate.service
 
 - name: linux-dev | Create /etc/systemd/system/gnome-shell-resume.service
-  become: true
   ansible.builtin.copy:
     dest: /etc/systemd/system/gnome-shell-resume.service
     content: |
@@ -56,14 +53,12 @@
       WantedBy=systemd-hibernate.service
 
 - name: linux-dev | Enable and start gnome-shell-resume service
-  become: true
   ansible.builtin.service:
     name: gnome-shell-resume
     state: stopped
     enabled: yes
 
 - name: linux-dev | Enable and start gnome-shell-suspend service
-  become: true
   ansible.builtin.service:
     name: gnome-shell-suspend
     state: stopped
