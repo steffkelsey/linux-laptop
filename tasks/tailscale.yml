@@ -1,0 +1,19 @@
+---
+- name: linux-dev | Add tailscale repo
+  get_url:
+    url: 'https://pkgs.tailscale.com/stable/rhel/10/tailscale.repo'
+    dest: '/etc/yum.repos.d/tailscale.repo'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: linux-dev | Install tailscale package
+  ansible.builtin.package:
+    name: tailscale
+    state: present
+
+- name: linux-dev | Enable and tailscale daemon
+  ansible.builtin.service:
+    name: tailscaled
+    state: started
+    enabled: yes

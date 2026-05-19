@@ -26,6 +26,9 @@
     - name: linux-dev | Install mise
       include_tasks: tasks/mise.yml
 
+    - name: linux-dev | Install tailscale
+      include_tasks: tasks/tailscale.yml
+
     - name: linux-dev | Connect dotfiles
       include_tasks: tasks/dotfiles.yml
 
