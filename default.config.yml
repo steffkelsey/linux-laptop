@@ -20,6 +20,7 @@ dotfiles_files:
   - .config/nvim/lua/chadrc.lua
   - .config/nvim/lua/mappings.lua
   - .config/nvim/lua/options.lua
+  - .config/nvim/lua/configs/lsp.lua
   - .config/nvim/lua/plugins/init.lua
   - .config/alacritty/alacritty.toml
 
