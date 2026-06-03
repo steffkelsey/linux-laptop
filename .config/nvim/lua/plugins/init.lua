@@ -9,11 +9,26 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    lazy = false,
     config = function()
       require "configs.lspconfig"
     end,
   },
-
+  {
+    "mason-org/mason-lspconfig.nvim",
+    lazy = false,
+    dependencies = {
+      "mason-org/mason.nvim",
+      "neovim/nvim-lspconfig",
+    },
+    opts = {},
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    lazy = false,
+    dependencies = { "mason-org/mason.nvim" },
+    opts = {}, -- set in .config/nvim/lua/configs/lsp.lua
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
