@@ -27,4 +27,3 @@
   when:
     - ansible_distribution == "Rocky"
     - unlock == "true"
-
