@@ -1,0 +1,25 @@
+---
+- name: Update all packages being aware of versionlocks
+  hosts: all
+  become: "{{ lookup('ansible.builtin.env', 'GLOBAL_BECOME', default='true') }}"
+
+  vars_files:
+    - default.config.yml
+
+  tasks:
+    - name: update | get nvidia/cuda packages to skip
+      ansible.builtin.shell: | 
+        dnf repository-packages {{ nvidia_repo_name }} list installed | awk 'NR > 1 {print $1}'
+      register: cuda_rhel10_packages
+      changed_when: false
+      when: 
+        - ansible_distribution == "Rocky"    
+
+    - name: update | update existing packages only
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+        update_cache: yes
+        update_only: yes
+        exclude: "{{ cuda_rhel10_packages.stdout_lines }}"
+      when: ansible_distribution == "Rocky"

@@ -53,9 +53,25 @@ to the root directory of this repo and run:
 ```bash
 ansible-playbook main.yml --ask-become-pass
 ```
+To install the NVIDIA official drivers for a pre-driver version 590 card
+```bash
+ansible-playbook nvidia-driver-install.yml --ask-become-pass
+```
 
-If Neovim is a fresh install, you will need to run :MasonInstallAll to install
-the default lsp servers.
+To version lock the installed cuda/nvidia drivers
+```bash
+ansible-playbook nvidia-driver-versionlock.yml --ask-become-pass
+```
+
+To remove the version lock on the cuda/nvidia drivers
+```bash
+UNLOCK=true ansible-playbook nvidia-driver-versionlock.yml --ask-become-pass
+```
+
+To update all packages excluding the nvidia/cuda packages under versionlock
+```bash
+ansible-playbook update.yml --ask-become-pass
+```
 
 ## Tests
 
@@ -65,13 +81,6 @@ molecule test
 ```
 
 ## FYI 
-
-I have had problems with the geerlingguy ansible-role-docker on a clean install
-of Rocky Linux 9 and Ansible  where it required the ini_file module from the
-community.general collection. Fix with:  
-```bash 
-ansible-galaxy collection install community.general
-```
 
 Also had trouble testing the playbook with molecule from a host running Rocky
 Linux 9. The issue is with older docker containers needing the host to have

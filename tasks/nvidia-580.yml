@@ -1,0 +1,66 @@
+---
+- name: nvidia-drv | Install packages
+  ansible.builtin.package:
+    name: 
+      - kernel-devel-matched
+      - kernel-headers
+      - "dnf-command(versionlock)"
+    state: present
+  when: ansible_distribution == "Rocky"
+
+- name: nvidia-drv | Set enable crb repo
+  community.general.dnf_config_manager:
+    name: crb
+    state: enabled
+  when: ansible_distribution == "Rocky"
+
+- name: nvidia-drv | Import EPEL release repo
+  ansible.builtin.dnf:
+    name:
+      - epel-release
+    state: present
+  when: ansible_distribution == "Rocky"
+
+- name: nvidia-drv | Install Development Tools group
+  ansible.builtin.dnf:
+    name: "@Development Tools"
+    state: present
+  when: ansible_distribution == "Rocky"
+
+#- name: Quick debug
+#  ansible.builtin.debug:
+#    var: ansible_facts
+
+- name: nvidia-drv | Configure and enable official NVIDIA repository
+  ansible.builtin.yum_repository:
+    name: {{ nvidia_repo_name }}
+    description: {{ nvidia_repo_name }}
+    baseurl: "https://developer.download.nvidia.com/compute/cuda/repos/rhel{{ ansible_distribution_major_version }}/{{ ansible_architecture }}"
+    gpgcheck: false
+  when: ansible_distribution == "Rocky"
+
+- name: nvidia-drv | Install NVIDIA cuda driver
+  ansible.builtin.dnf:
+    name: cuda-drivers-580
+    state: latest
+  when: ansible_distribution == "Rocky"
+
+- name: nvidia-drv | Get current grub defaults
+  ansible.builtin.command: grubby --info=DEFAULT
+  register: grub_default
+  changed_when: false
+  when: ansible_distribution == "Rocky"
+
+- name: nvidia-drv | Blacklist Nouveau and disable modeset in all kernels
+  ansible.builtin.command:
+    cmd: >-
+      grubby --args="nouveau.modeset=0 rd.driver.blacklist=nouveau" --update-kernel=ALL
+  register: grubby_result
+  changed_when: "'Adding' in grubby_result.stdout or grubby_result.rc == 0"
+  when: 
+    - ansible_distribution == "Rocky"
+    - "'nouveau.modeset=0 rd.driver.blacklist=nouveau' not in grub_default.stdout"
+
+- name: nvidia-drv | Regenerate initramfs
+  ansible.builtin.shell: dracut --regenerate-all --force
+  when: grubby_result is changed

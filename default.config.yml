@@ -69,3 +69,5 @@ nvchad_starter_useless_files:
   - lua/mappings.lua
   - lua/options.lua
   - lua/plugins/init.lua
+
+nvidia_repo_name: cuda-rhel10-x86_64

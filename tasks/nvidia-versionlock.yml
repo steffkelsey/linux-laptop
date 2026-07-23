@@ -1,0 +1,30 @@
+---
+- name: nvidia-versionlock | Get cuda/nvidia packages to lock or unlock
+  ansible.builtin.shell: | 
+    dnf repository-packages {{ nvidia_repo_name }} list installed | awk 'NR > 1 {print $1}'
+  register: cuda_rhel10_packages
+  changed_when: false
+  when: 
+    - ansible_distribution == "Rocky"
+
+- name: nvidia-versionlock | Lock packages
+  community.general.dnf_versionlock:
+    name: "{{ cuda_rhel10_packages.stdout_lines }}"
+    state: present
+  vars:
+    unlock: "{{ lookup('ansible.builtin.env', 'UNLOCK', default='false') }}"
+  when:
+    - ansible_distribution == "Rocky"
+    - unlock == "false"
+
+- name: nvidia-versionlock | Unlock packages
+  community.general.dnf_versionlock:
+    name: "{{ item | regex_replace('\\..*', '-*') }}"
+    state: absent
+  loop: "{{ cuda_rhel10_packages.stdout_lines }}"
+  vars:
+    unlock: "{{ lookup('ansible.builtin.env', 'UNLOCK', default='false') }}"
+  when:
+    - ansible_distribution == "Rocky"
+    - unlock == "true"
+

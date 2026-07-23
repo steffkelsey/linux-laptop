@@ -1,0 +1,11 @@
+---
+- name: Install nvidia 580 drivers
+  hosts: all
+  become: "{{ lookup('ansible.builtin.env', 'GLOBAL_BECOME', default='true') }}"
+
+  vars_files:
+    - default.config.yml
+
+  tasks:
+    - name: nvidia-driver-580 | Install nvidia 580 driver
+      include_tasks: tasks/nvidia-580.yml

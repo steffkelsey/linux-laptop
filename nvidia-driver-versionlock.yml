@@ -1,0 +1,11 @@
+---
+- name: Lock or Unlock nvidia 580 packages
+  hosts: all
+  become: "{{ lookup('ansible.builtin.env', 'GLOBAL_BECOME', default='true') }}"
+
+  vars_files:
+    - default.config.yml
+
+  tasks:
+    - name: nvidia-driver-versionlock | Lock or unlock the nvidia 580 packages
+      include_tasks: tasks/nvidia-versionlock.yml
