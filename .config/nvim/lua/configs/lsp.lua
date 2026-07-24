@@ -27,6 +27,16 @@ vim.lsp.config('gopls', {
   },
 })
 
+-- Initialize clangd with basic configurations
+vim.lsp.config('clangd', {
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=never", -- Stops clangd from automatically inserting unexpected C++ headers
+  },
+  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+})
 
 require('mason-lspconfig').setup({
   automatic_enable = {
