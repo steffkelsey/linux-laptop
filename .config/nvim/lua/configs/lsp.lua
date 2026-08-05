@@ -38,6 +38,15 @@ vim.lsp.config('clangd', {
   filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
 })
 
+-- Initialize astroLSP (might not be needed)
+vim.lsp.config('astro', {
+  init_options = {
+    typescript = {
+      tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
+    },
+  },
+})
+
 require('mason-lspconfig').setup({
   automatic_enable = {
     exclude = { },
